@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import AddTodo from '../AddTodo/AddTodo';
 import Todo from '../Todo/Todo';
-
-export default function TodoList() {
+// TodoList에 필터를 받아옴
+export default function TodoList({filter}) {
     const [todos, setTodos] = useState([
         {id: '123', text:'장보기', status:'active'},
         {id: '124', text:'책읽기', status:'active'},
@@ -25,10 +25,15 @@ export default function TodoList() {
         todos를 돌면서 todo의 id가 삭제하고자 하는 아이템이 아닌것만 필터링*/
         setTodos(todos.filter(todo => todo.idx !== deleted.id));
     }
+    /* 필터된 아이템만 받아옴
+    기존 todo와 해당하는 filter getFilteredItems 함수에 전달*/
+    const filtered = getFilteredItems(todos, filter);
+
     return (
         <section>
             <ul>
-                {todos.map(item => (
+                {/* 필터링된 아이들만 map */}
+                {filtered.map(item => (
                 <Todo 
                 key = {item.id} 
                 todo={item} 
@@ -41,4 +46,14 @@ export default function TodoList() {
         </section>
     );
 }
-
+/* getFilteredItems(todos, filter) 현재 todo배열과
+어떤걸 filter할 것인지 데이터를 받아옴*/
+function getFilteredItems(todos, filter){
+    // filter의 정보가 all이라면 별도로 filter하지 않아도됨
+    if(filter === 'all'){
+        return todos;
+    }
+    /*filter가 all이 아닌 경우
+    todos의 status가 filter와 같은것만 받아옴*/
+    return todos.filter(todo => todo.status === filter);
+}
