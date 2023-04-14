@@ -1,12 +1,21 @@
 import React from 'react';
 import styles from './Header.module.css';
+import { useDarkMode } from '../../context/DarkModeContext';
+import {HiMoon, HiSun} from 'react-icons/hi';
 // si : style import
 // cn: className import
 
 // App에서 filters, filter, onFilterChange 전달받음
 export default function Header({filters, filter, onFilterChange}) {
+    // useDarkMode 훅을 이용
+    const {darkMode, toggleDarkMode} = useDarkMode();
     return (
         <header className={styles.header}>
+            {/* darkMode 토글 버튼 */}
+            <button onClick={toggleDarkMode}>
+                {!darkMode && <HiMoon></HiMoon>}
+                {darkMode && <HiSun></HiSun>}
+            </button>
             <ul className={styles.filters}>
                 {/* filters를 돌면서 고정된 ui로 index를 써도 무난,
                 li의 key를 index로 지정,
