@@ -4,6 +4,7 @@
   --color-grey:#d1d1d1;
   --color-text: #22243b;
   --color-accent: #5c9ca5f7;
+  --color-white:white;
 }
 body {
   margin: 0;
@@ -17,6 +18,7 @@ body {
   display:flex;
   justify-content: center;
   align-items: center;
+  font-size: 1.2rem;
   background: rgb(81,87,111);
   background: linear-gradient(
     106deg, 
@@ -41,6 +43,9 @@ box-shadow: 2px 2px 13px 7px #2D2D2D;
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+*{
+  box-sizing: border-box;
 }
 
 ul{
