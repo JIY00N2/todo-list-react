@@ -23,7 +23,7 @@ export default function TodoList({filter}) {
         /*filter 사용
         삭제된 todo를 받아옴
         todos를 돌면서 todo의 id가 삭제하고자 하는 아이템이 아닌것만 필터링*/
-        setTodos(todos.filter(todo => todo.idx !== deleted.id));
+        setTodos(todos.filter(todo => todo.id !== deleted.id));
     }
     // useEffect를 이용해 localstorage에 todo 저장
     useEffect(() => {
